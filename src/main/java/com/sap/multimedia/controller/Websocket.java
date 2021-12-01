@@ -55,6 +55,25 @@ public class Websocket implements Runnable {
 		
 	}
 	
+	@CrossOrigin
+	@RequestMapping("/cli/{name}")
+	public String webSocketCli(@PathVariable("name") String name) {	
+		try {
+			Socket misocket= new Socket("10.1.26.162",9999);
+				DataOutputStream flujo_salida=new DataOutputStream(misocket.getOutputStream());
+				flujo_salida.writeUTF("inicio Socketdd:"+name);
+				flujo_salida.close();
+			
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("error"+e.getMessage());
+		}
+		return "socket Cliente:"+name;
+	}
 	
 
 }
