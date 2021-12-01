@@ -73,4 +73,34 @@ public class Fun_File {
 		return directorio;
 	}
 	
+		public static void del(String filepath) throws IOException {
+			 File f = new File (filepath); // define la ruta del archivo
+			 if (f.exists () && f.isDirectory ()) {// determina si es un archivo o un directorio
+				 if (f.listFiles (). length == 0) {// Si no hay archivos en el directorio, elimínelos directamente
+					f.delete();
+				 } else {// Si lo hay, coloque el archivo en la matriz y determine si hay un directorio subordinado
+					File delFile[] = f.listFiles();
+					int i = f.listFiles().length;
+					for (int j = 0; j < i; j++) {
+						if (delFile[j].isDirectory()) {
+							 del (delFile [j] .getAbsolutePath ()); // Llame al método del de forma recursiva y obtenga la ruta del subdirectorio
+						}
+						 delFile [j] .delete (); // eliminar un archivo
+					}
+				}
+			}
+	
+		
+		
+	}
+		
+		public static void delFile(String filepath) throws IOException {
+			// File f = new File (filepath); // define la ruta del archivo
+			 File fichero = new File(filepath);
+			 if (fichero.delete())
+				   System.out.println("El fichero ha sido borrado satisfactoriamente");
+				else
+				   System.out.println("El fichero no puede ser borrado");
+
+	}
 }

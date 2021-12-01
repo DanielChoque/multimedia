@@ -9,5 +9,4 @@ public class MultimediaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MultimediaApplication.class, args);
 	}
-
 }
